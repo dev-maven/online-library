@@ -1,14 +1,14 @@
-$primary-color: #362645;
-$secondary-color: #555;
+@import "../../../variables";
 
 .card {
-  border: 1px solid #ccc;
+  border: 1px solid $secondary-color;
   border-radius: 8px;
   padding: 20px 20px 10px;
   position: relative;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  height: 100%;
 
   .card-content {
     display: flex;
@@ -20,11 +20,12 @@ $secondary-color: #555;
   .book-image {
     width: 100px;
     height: 140px;
-    border: 1px solid #ccc;
+    border: 2px solid #ccc;
     border-radius: 15px;
     margin-right: 20px;
     object-fit: cover;
     object-position: center;
+    cursor: pointer;
   }
 
   .book-details {
@@ -40,7 +41,6 @@ $secondary-color: #555;
     .author,
     .publication-year {
       font-size: 16px;
-      color: $secondary-color;
       margin-bottom: 10px;
     }
   }
@@ -51,7 +51,7 @@ $secondary-color: #555;
 
     .action-button {
       background-color: transparent;
-      border: 1px solid $primary-color;
+      border: 1px solid$primary-color;
       border-radius: 4px;
       padding: 8px 16px;
       margin-left: 10px;
@@ -60,6 +60,16 @@ $secondary-color: #555;
     .wishlist-button {
       background-color: $primary-color;
       color: #fff;
+    }
+  }
+
+  .link {
+    text-decoration: none;
+    color: #0e4e93;
+    cursor: pointer;
+
+    &:hover {
+      text-decoration: underline;
     }
   }
 }

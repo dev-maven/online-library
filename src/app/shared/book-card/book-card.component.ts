@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Book } from '../../models/book';
 
 @Component({
@@ -8,7 +8,12 @@ import { Book } from '../../models/book';
 })
 export class BookCardComponent implements OnInit {
   @Input() book: Book | null = null;
+  @Output() openBookDetail = new EventEmitter();
   constructor() {}
 
   ngOnInit() {}
+
+  navigateToBookDetail() {
+    this.openBookDetail.emit(this.book?.book_olid);
+  }
 }

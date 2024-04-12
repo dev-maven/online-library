@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { BookSubject, Work } from '../models/subject';
 import { DataService } from '../services/data.service';
 import { Book } from '../models/book';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -10,10 +11,13 @@ import { Book } from '../models/book';
 })
 export class HomeComponent implements OnInit {
   books: Book[] = [];
-  constructor(private dataService: DataService) {}
+  constructor(private dataService: DataService, private router: Router) {}
 
   ngOnInit() {
-    this.loadSubject();
+    this.books = this.dataService.getBooksFromLocalStorage();
+    if (this.books.length === 0) {
+      this.loadSubject();
+    }
   }
 
   loadSubject() {
@@ -35,9 +39,13 @@ export class HomeComponent implements OnInit {
             : '',
         }));
 
-        console.log(this.books);
+        sessionStorage.setItem('books', JSON.stringify(this.books));
       },
       (error) => console.log(error)
     );
+  }
+
+  goToBookDetail(id: string) {
+    this.router.navigate(['book-detail', id]);
   }
 }
