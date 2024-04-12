@@ -1,0 +1,15 @@
+    <div class="card" *ngIf="book">
+    <div class="card-content">
+<img [src]="book.cover_url ? book.cover_url : '/assets/images/placeholder.png'" alt="Book Image" class="book-image" />
+
+  <div class="book-details">
+        <div class="publication-year">{{book.first_publish_year}}</div>
+    <div class="book-title">{{book.title}}</div>
+    <div class="author">{{book.author}}</div>
+  </div>
+  </div>
+      <div class="actions">
+      <button class="action-button">More</button>
+      <button class="action-button wishlist-button">Wishlist</button>
+    </div>
+</div>

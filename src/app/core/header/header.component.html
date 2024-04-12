@@ -1,0 +1,23 @@
+<nav class="navbar">
+  <div class="logo-container pointer" routerLink="/">
+    <img class="logo-image" src="/assets/images/logo.png" alt="logo">
+  </div>
+  <ul class="nav-menu" [ngClass]="{'visible': showMenu}">
+    <li class="menu-item">
+      <span class="menu-link pointer" [routerLink]="['/home']" routerLinkActive="router-link-active">
+        home</span>
+    </li>
+    <li class="menu-item">
+      <span class="menu-link pointer" [routerLink]="['/search']" routerLinkActive="router-link-active">
+        search</span>
+    </li>
+        <li class="menu-item">
+      <span class="menu-link pointer" [routerLink]="['/wishlist']" routerLinkActive="router-link-active">
+        wishlist</span>
+    </li>
+  </ul>
+  <fa-icon [icon]="hamburger" class="fa-2x pointer menu-icon hide-on-desktop" (click)="showMenu = !showMenu"
+    *ngIf="!showMenu"></fa-icon>
+  <fa-icon [icon]="close" class="fa-2x pointer menu-icon hide-on-desktop" (click)="showMenu = !showMenu" *ngIf="showMenu">
+  </fa-icon>
+</nav>

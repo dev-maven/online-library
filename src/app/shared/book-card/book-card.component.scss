@@ -1,0 +1,65 @@
+$primary-color: #362645;
+$secondary-color: #555;
+
+.card {
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 20px 20px 10px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  .card-content {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    margin-bottom: 10px;
+  }
+
+  .book-image {
+    width: 100px;
+    height: 140px;
+    border: 1px solid #ccc;
+    border-radius: 15px;
+    margin-right: 20px;
+    object-fit: cover;
+    object-position: center;
+  }
+
+  .book-details {
+    flex: 1;
+    flex-grow: 1;
+
+    .book-title {
+      font-size: 18px;
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+
+    .author,
+    .publication-year {
+      font-size: 16px;
+      color: $secondary-color;
+      margin-bottom: 10px;
+    }
+  }
+
+  .actions {
+    display: block;
+    text-align: right;
+
+    .action-button {
+      background-color: transparent;
+      border: 1px solid $primary-color;
+      border-radius: 4px;
+      padding: 8px 16px;
+      margin-left: 10px;
+      cursor: pointer;
+    }
+    .wishlist-button {
+      background-color: $primary-color;
+      color: #fff;
+    }
+  }
+}
