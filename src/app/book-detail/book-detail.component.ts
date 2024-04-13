@@ -1,10 +1,9 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { DataService } from '../services/data.service';
+import { BookService } from '../services/book.service';
 import { Book } from '../models/book';
 import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { WishlistService } from '../services/wishlist.service';
-import { ConfirmComponent } from '../shared/confirm.component';
 
 @Component({
   selector: 'app-book-detail',
@@ -19,7 +18,7 @@ export class BookDetailComponent implements OnInit, OnDestroy {
   private wishListSubscription: Subscription | undefined;
 
   constructor(
-    private dataService: DataService,
+    private bookService: BookService,
     private route: ActivatedRoute,
     private wishListService: WishlistService
   ) {}
@@ -27,7 +26,7 @@ export class BookDetailComponent implements OnInit, OnDestroy {
   ngOnInit() {
     const id = this.route.snapshot.paramMap.get('id');
     if (id) {
-      this.book = this.dataService.getBookDetail(id);
+      this.book = this.bookService.getBookDetail(id);
       if (this.book) {
         this.book.cover_url = this.book.cover_url
           ? this.book.cover_url.replace(/-S\.jpg$/, '-L.jpg')

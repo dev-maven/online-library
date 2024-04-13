@@ -18,6 +18,13 @@ const routes: Routes = [
         (a) => a.BookDetailModule
       ),
   },
+  {
+    path: 'author-detail/:id',
+    loadChildren: () =>
+      import('./author-detail/author-detail.module').then(
+        (a) => a.AuthorDetailModule
+      ),
+  },
 ];
 
 @NgModule({

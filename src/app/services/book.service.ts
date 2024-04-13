@@ -6,7 +6,7 @@ import { BookSubject } from '../models/subject';
 import { Book } from '../models/book';
 
 @Injectable()
-export class DataService {
+export class BookService {
   baseUrl = environment.baseUrl;
 
   constructor(private http: HttpClient) {}

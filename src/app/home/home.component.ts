@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { BookSubject, Work } from '../models/subject';
-import { DataService } from '../services/data.service';
+import { BookService } from '../services/book.service';
 import { Book } from '../models/book';
 import { Router } from '@angular/router';
 
@@ -11,17 +10,17 @@ import { Router } from '@angular/router';
 })
 export class HomeComponent implements OnInit {
   books: Book[] = [];
-  constructor(private dataService: DataService, private router: Router) {}
+  constructor(private bookService: BookService, private router: Router) {}
 
   ngOnInit() {
-    this.books = this.dataService.getBooksFromLocalStorage();
+    this.books = this.bookService.getBooksFromLocalStorage();
     if (this.books.length === 0) {
       this.loadSubject();
     }
   }
 
   loadSubject() {
-    this.dataService.getSubjects('finance').subscribe(
+    this.bookService.getSubjects('finance').subscribe(
       (result) => {
         let selectedBooks = result.works.slice(0, 9);
         this.books = selectedBooks.map((book) => ({
@@ -47,5 +46,11 @@ export class HomeComponent implements OnInit {
 
   goToBookDetail(id: string) {
     this.router.navigate(['book-detail', id]);
+  }
+
+  goToAuthorDetail(book: Book) {
+    this.router.navigate(['author-detail', book.author_olid], {
+      queryParams: { name: book.author },
+    });
   }
 }

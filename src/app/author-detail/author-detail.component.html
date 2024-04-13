@@ -1,0 +1,19 @@
+<div class="author-container" *ngIf="author">
+    <h1 class="page-title">{{author.name || 'N/A'}}</h1>
+    <div class="row">
+      <div class="col-4">
+<img *ngIf="author.imageUrl" [src]="author.imageUrl" alt="author Cover" class="author-cover">
+      </div>
+            <div class="col-6">
+                <div class="author-details">
+                  <p>Birth Date: {{author.birth_date || 'N/A'}}</p>
+                  <p>Top Work: {{author.top_work || 'N/A'}}</p>
+                  <p>Work Count: {{author.work_count || 'N/A'}}</p>
+                  <p>Top Subjects of the Author: </p>
+                  <div class="subject-container">
+                  <span *ngFor="let subject of author.top_subjects">{{subject}}</span>
+                  </div>
+        </div>
+      </div>
+    </div>
+</div>
