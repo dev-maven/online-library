@@ -10,9 +10,13 @@
                   <p>Top Work: {{author.top_work || 'N/A'}}</p>
                   <p>Work Count: {{author.work_count || 'N/A'}}</p>
                   <p>Top Subjects of the Author: </p>
-                  <div class="subject-container">
+                  <div class="subject-container" *ngIf="author.top_subjects && author.top_subjects.length > 0 else noSubject">
                   <span *ngFor="let subject of author.top_subjects">{{subject}}</span>
                   </div>
+                  <ng-template #noSubject>
+                                      <div>N/A</div>
+                  </ng-template>
+
         </div>
       </div>
     </div>

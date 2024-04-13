@@ -19,8 +19,7 @@ import { Component, Input } from '@angular/core';
       }
 
       img {
-        width: 100%;
-        max-width: 800px;
+        width: 70%;
         height: auto;
       }
 
@@ -28,6 +27,7 @@ import { Component, Input } from '@angular/core';
         font-size: 24px;
         font-weight: bold;
         color: #333;
+        margin-top: 0;
       }
     `,
   ],

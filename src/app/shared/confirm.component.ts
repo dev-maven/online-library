@@ -52,6 +52,7 @@ button {
   padding: 10px 40px;
   cursor: pointer;
   margin-right: 10px;
+  margin-bottom: 10px;
 }
 
 button:last-child {

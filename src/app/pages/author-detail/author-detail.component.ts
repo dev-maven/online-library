@@ -24,7 +24,8 @@ export class AuthorDetailComponent implements OnInit {
         this.author = result.docs.find((x) => x.key === id);
         if (this.author) {
           await this.loadImage(this.author);
-          this.author.top_subjects = this.author.top_subjects.slice(0, 5);
+          if (this.author.top_subjects)
+            this.author.top_subjects = this.author.top_subjects.slice(0, 5);
         }
       });
     });
@@ -34,7 +35,7 @@ export class AuthorDetailComponent implements OnInit {
     this.authorService
       .checkImage(`https://covers.openlibrary.org/a/olid/${author.key}.json`)
       .subscribe({
-        next: (result: any) => {
+        next: (result: string) => {
           if (result === 'success') {
             author.imageUrl = `https://covers.openlibrary.org/a/olid/${author.key}-M.jpg`;
           } else {

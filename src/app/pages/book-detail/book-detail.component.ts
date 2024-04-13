@@ -15,6 +15,7 @@ export class BookDetailComponent implements OnInit, OnDestroy {
   isBookInWishList = false;
   showConfirmModal = false;
   modalTitle = '';
+  noResult = false;
   private wishListSubscription: Subscription | undefined;
 
   constructor(
@@ -25,26 +26,33 @@ export class BookDetailComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     const id = this.route.snapshot.paramMap.get('id');
-    if (id) {
-      this.book = this.bookService.getBookDetail(id);
-      if (this.book) {
-        this.book.cover_url = this.book.cover_url
-          ? this.book.cover_url.replace(/-S\.jpg$/, '-L.jpg')
-          : '/assets/images/placeholder.png';
+    this.route.queryParams.subscribe((params) => {
+      const title = params['title'];
+      if (id)
+        this.bookService.getBookDetail(id, title).subscribe((res) => {
+          this.book = res;
+          if (this.book) {
+            this.noResult = false;
+            this.book.cover_url = this.book.cover_url
+              ? this.book.cover_url.replace(/-S\.jpg$/, '-L.jpg')
+              : '/assets/images/placeholder.png';
 
-        this.isBookInWishList = this.wishListService.isBookInWishList(
-          this.book.book_olid
-        );
-        this.wishListSubscription = this.wishListService
-          .getWishList()
-          .subscribe(() => {
-            if (this.book)
-              this.isBookInWishList = this.wishListService.isBookInWishList(
-                this.book.book_olid
-              );
-          });
-      }
-    }
+            this.isBookInWishList = this.wishListService.isBookInWishList(
+              this.book.book_olid
+            );
+            this.wishListSubscription = this.wishListService
+              .getWishList()
+              .subscribe(() => {
+                if (this.book)
+                  this.isBookInWishList = this.wishListService.isBookInWishList(
+                    this.book.book_olid
+                  );
+              });
+          } else {
+            this.noResult = true;
+          }
+        });
+    });
   }
 
   toggleWishList(): void {

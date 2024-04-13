@@ -10,15 +10,21 @@
                   <p>Book Title: {{book.title}}</p>
                   <p>Author's Name: {{book.author}}</p>
                   <p>Edition Count: {{book.edition_count}}</p>
-        </div>
-                    <button class="add-button" [ngClass]="{'warn-button': isBookInWishList, 'primary-button': !isBookInWishList}" (click)="toggleWishList()">{{isBookInWishList ? 'Remove from WishList' : 'Add to WishList'}}</button>
-
+                </div>
+              <button class="add-button"
+              [ngClass]="{'warn-button': isBookInWishList,
+              'primary-button': !isBookInWishList}"
+              (click)="toggleWishList()">{{isBookInWishList ?
+                 'Remove from WishList' : 'Add to WishList'}}</button>
       </div>
     </div>
 </div>
 
 <ng-template #noBook>
+  <div *ngIf="noResult">
 <app-not-found [text]="'No Book Found'"></app-not-found>
+  </div>
+
 </ng-template>
 
 <app-confirm-modal *ngIf="showConfirmModal" (confirm)="onConfirm($event)" [title]="modalTitle"></app-confirm-modal>

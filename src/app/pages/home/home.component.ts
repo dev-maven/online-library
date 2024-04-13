@@ -28,28 +28,28 @@ export class HomeComponent implements OnInit {
   }
 
   loadSubject() {
-    this.bookService.getSubjects('finance').subscribe(
-      (result) => {
-        let selectedBooks = result.works.slice(0, 9);
-        this.books = selectedBooks.map((book) => ({
-          title: book.title,
-          author: book.authors[0].name,
-          cover_id: book.cover_id,
-          first_publish_year: book.first_publish_year,
-          edition_count: book.edition_count,
-          book_olid: book.key.substring(book.key.lastIndexOf('/') + 1),
-          author_olid: book.authors[0].key.substring(
-            book.authors[0].key.lastIndexOf('/') + 1
-          ),
-          cover_url: book.cover_id
-            ? `https://covers.openlibrary.org/b/id/${book.cover_id}-S.jpg`
-            : '',
-        }));
-
-        sessionStorage.setItem('books', JSON.stringify(this.books));
+    this.bookService.getSubjects('finance').subscribe({
+      next: (result) => {
+        if (result.works.length > 0) {
+          let selectedBooks = result.works.slice(0, 9);
+          this.books = selectedBooks.map((book) => ({
+            title: book.title,
+            author: book.authors[0].name,
+            cover_id: book.cover_id,
+            first_publish_year: book.first_publish_year,
+            edition_count: book.edition_count,
+            book_olid: book.key.substring(book.key.lastIndexOf('/') + 1),
+            author_olid: book.authors[0].key.substring(
+              book.authors[0].key.lastIndexOf('/') + 1
+            ),
+            cover_url: book.cover_id
+              ? `https://covers.openlibrary.org/b/id/${book.cover_id}-S.jpg`
+              : '',
+          }));
+          sessionStorage.setItem('books', JSON.stringify(this.books));
+        }
       },
-      (error) => console.log(error)
-    );
+    });
   }
 
   checkBookInWishList(bookId: string): boolean {
@@ -77,8 +77,10 @@ export class HomeComponent implements OnInit {
     this.showConfirmModal = false;
   }
 
-  goToBookDetail(id: string) {
-    this.router.navigate(['book-detail', id]);
+  goToBookDetail(book: Book) {
+    this.router.navigate(['book-detail', book.book_olid], {
+      queryParams: { title: book.title },
+    });
   }
 
   goToAuthorDetail(book: Book) {

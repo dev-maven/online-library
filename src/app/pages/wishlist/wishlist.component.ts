@@ -46,8 +46,10 @@ export class WishlistComponent implements OnInit, OnDestroy {
     }
   }
 
-  goToBookDetail(id: string) {
-    this.router.navigate(['book-detail', id]);
+  goToBookDetail(book: Book) {
+    this.router.navigate(['book-detail', book.book_olid], {
+      queryParams: { title: book.title },
+    });
   }
 
   goToAuthorDetail(book: Book) {

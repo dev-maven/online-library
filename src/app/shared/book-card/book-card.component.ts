@@ -19,7 +19,7 @@ export class BookCardComponent implements OnInit {
   ngOnInit() {}
 
   navigateToBookDetail() {
-    this.openBookDetail.emit(this.book?.book_olid);
+    this.openBookDetail.emit(this.book);
   }
 
   navigateToAuthorDetail() {

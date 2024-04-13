@@ -1,0 +1,49 @@
+.input-container {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 30px;
+}
+
+.input-wrapper {
+  flex: 1;
+  margin-bottom: 10px;
+  @media (max-width: 768px) {
+    flex-basis: 100%;
+    margin-right: 0;
+  }
+}
+
+.dropdown,
+.text-field {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+  &:focus,
+  &:active {
+    outline: none;
+  }
+}
+
+.text-field {
+  width: 50%;
+  border-right: none;
+  border-radius: 10px 0 0 10px;
+}
+
+.dropdown {
+  appearance: none;
+  background-image: url('data:image/svg+xml;utf8,<svg fill="%23333" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M7 10l5 5 5-5z"/><path d="M0 0h24v24H0z" fill="none"/></svg>');
+  background-repeat: no-repeat;
+  background-position: right 10px center;
+  background-size: 20px;
+  width: 18%;
+  margin-left: -10px;
+  border-radius: 0 10px 10px 0;
+
+  @media (max-width: 601px) {
+    width: 30%;
+  }
+}

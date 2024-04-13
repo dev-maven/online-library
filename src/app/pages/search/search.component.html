@@ -1,3 +1,36 @@
-<p>
-  search works!
-</p>
+    <h1 class="page-title">Search</h1>
+
+<form [formGroup]="searchForm" (ngSubmit)="onSubmit()">
+  <div class="input-container">
+    <input type="text" formControlName="searchText" placeholder="Search..." class="text-field">
+    <select class="dropdown" formControlName="searchKey">
+      <option value="Title">Title</option>
+      <option value="Subject">Subject</option>
+      <option value="Author">Author</option>
+    </select>
+  </div>
+</form>
+
+<div class="row" *ngIf="books && books.length > 0; else noBooks">
+  <div class="col-4" *ngFor="let book of books">
+<app-book-card [book]="book" (openBookDetail)="goToBookDetail($event)"
+(openAuthorDetail)="goToAuthorDetail($event)"
+(wishlistToggle)="toggleWishList($event)"
+[isInWishlist]="checkBookInWishList(book.book_olid)">
+</app-book-card>
+</div>
+</div>
+
+<app-confirm-modal *ngIf="showConfirmModal"
+(confirm)="onConfirm($event)" [title]="modalTitle">
+</app-confirm-modal>
+
+<ng-template #noBooks>
+  <div *ngIf="noResult">
+<app-not-found [text]="'No Book Found, please try with a different keyword'">
+</app-not-found>
+</div>
+</ng-template>
+
+
+

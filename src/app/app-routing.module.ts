@@ -31,6 +31,11 @@ const routes: Routes = [
     loadChildren: () =>
       import('./pages/wishlist/wishlist.module').then((a) => a.WishlistModule),
   },
+  {
+    path: 'search',
+    loadChildren: () =>
+      import('./pages/search/search.module').then((a) => a.SearchModule),
+  },
 ];
 
 @NgModule({
