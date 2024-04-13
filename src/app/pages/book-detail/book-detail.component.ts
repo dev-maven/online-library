@@ -1,9 +1,9 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { BookService } from '../services/book.service';
-import { Book } from '../models/book';
+import { BookService } from '../../services/book.service';
+import { Book } from '../../models/book';
 import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
-import { WishlistService } from '../services/wishlist.service';
+import { WishlistService } from '../../services/wishlist.service';
 
 @Component({
   selector: 'app-book-detail',

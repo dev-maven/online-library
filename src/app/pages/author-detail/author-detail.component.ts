@@ -1,8 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { Book } from '../models/book';
 import { ActivatedRoute } from '@angular/router';
-import { AuthorService } from '../services/author.service';
-import { Author } from '../models/author';
+import { Author } from '../../models/author';
+import { AuthorService } from '../../services/author.service';
 
 @Component({
   selector: 'app-author-detail',
@@ -42,7 +41,7 @@ export class AuthorDetailComponent implements OnInit {
             author.imageUrl = '/assets/images/author.png';
           }
         },
-        error: (err) => {
+        error: (error: Error) => {
           author.imageUrl = '/assets/images/author.png';
         },
       });

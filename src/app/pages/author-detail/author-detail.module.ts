@@ -1,18 +1,18 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { BookDetailComponent } from './book-detail.component';
+import { AuthorDetailComponent } from './author-detail.component';
 import { RouterModule } from '@angular/router';
-import { SharedModule } from '../shared/shared.module';
+import { SharedModule } from '../../shared/shared.module';
 
 export const routes = [
   {
     path: '',
-    component: BookDetailComponent,
+    component: AuthorDetailComponent,
   },
 ];
 
 @NgModule({
   imports: [CommonModule, SharedModule, RouterModule.forChild(routes)],
-  declarations: [BookDetailComponent],
+  declarations: [AuthorDetailComponent],
 })
-export class BookDetailModule {}
+export class AuthorDetailModule {}

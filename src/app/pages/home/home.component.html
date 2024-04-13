@@ -10,9 +10,12 @@
 </div>
 </div>
 
-<app-confirm-modal *ngIf="showConfirmModal" (confirm)="onConfirm($event)" [title]="modalTitle"></app-confirm-modal>
+<app-confirm-modal *ngIf="showConfirmModal"
+(confirm)="onConfirm($event)" [title]="modalTitle">
+</app-confirm-modal>
 
 
 <ng-template #noBooks>
-<app-not-found [text]="'No Book Found, please refresh page'"></app-not-found>
+<app-not-found [text]="'No Book Found, please refresh page'">
+</app-not-found>
 </ng-template>

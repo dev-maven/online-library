@@ -9,26 +9,27 @@ const routes: Routes = [
   },
   {
     path: 'home',
-    loadChildren: () => import('./home/home.module').then((a) => a.HomeModule),
+    loadChildren: () =>
+      import('./pages/home/home.module').then((a) => a.HomeModule),
   },
   {
     path: 'book-detail/:id',
     loadChildren: () =>
-      import('./book-detail/book-detail.module').then(
+      import('./pages/book-detail/book-detail.module').then(
         (a) => a.BookDetailModule
       ),
   },
   {
     path: 'author-detail/:id',
     loadChildren: () =>
-      import('./author-detail/author-detail.module').then(
+      import('./pages/author-detail/author-detail.module').then(
         (a) => a.AuthorDetailModule
       ),
   },
   {
     path: 'wishlist',
     loadChildren: () =>
-      import('./wishlist/wishlist.module').then((a) => a.WishlistModule),
+      import('./pages/wishlist/wishlist.module').then((a) => a.WishlistModule),
   },
 ];
 

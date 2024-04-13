@@ -1,6 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { WishlistService } from '../services/wishlist.service';
-import { Book } from '../models/book';
+import { WishlistService } from '../../services/wishlist.service';
+import { Book } from '../../models/book';
 import { Subscription } from 'rxjs';
 import { Router } from '@angular/router';
 
