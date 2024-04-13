@@ -1,4 +1,4 @@
-<div class="book-container" *ngIf="book">
+<div class="book-container" *ngIf="book else noBook">
     <h1 class="page-title">{{book.title}}</h1>
     <div class="row">
       <div class="col-4">
@@ -16,6 +16,10 @@
       </div>
     </div>
 </div>
+
+<ng-template #noBook>
+<app-not-found [text]="'No Book Found'"></app-not-found>
+</ng-template>
 
 <app-confirm-modal *ngIf="showConfirmModal" (confirm)="onConfirm($event)" [title]="modalTitle"></app-confirm-modal>
 

@@ -1,0 +1,18 @@
+    <h1 class="page-title">My Wishlist </h1>
+
+    <div class="row" *ngIf="books && books.length > 0; else noBooks">
+  <div class="col-4" *ngFor="let book of books">
+<app-book-card [book]="book" [wishlistScreen]="true"
+(wishlistRemove)="removeFromWishlist($event)"
+(openBookDetail)="goToBookDetail($event)"
+(openAuthorDetail)="goToAuthorDetail($event)"
+></app-book-card>
+</div>
+</div>
+
+<ng-template #noBooks>
+<app-not-found [text]="'No Items in Wishlist'"></app-not-found>
+</ng-template>
+
+
+<app-confirm-modal *ngIf="showConfirmModal" (confirm)="onConfirm($event)" [title]="modalTitle"></app-confirm-modal>

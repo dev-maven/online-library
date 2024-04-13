@@ -25,6 +25,11 @@ const routes: Routes = [
         (a) => a.AuthorDetailModule
       ),
   },
+  {
+    path: 'wishlist',
+    loadChildren: () =>
+      import('./wishlist/wishlist.module').then((a) => a.WishlistModule),
+  },
 ];
 
 @NgModule({

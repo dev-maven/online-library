@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { BookService } from '../services/book.service';
 import { Book } from '../models/book';
 import { Router } from '@angular/router';
+import { WishlistService } from '../services/wishlist.service';
 
 @Component({
   selector: 'app-home',
@@ -10,7 +11,14 @@ import { Router } from '@angular/router';
 })
 export class HomeComponent implements OnInit {
   books: Book[] = [];
-  constructor(private bookService: BookService, private router: Router) {}
+  selectedBook: Book | null = null;
+  showConfirmModal = false;
+  modalTitle = '';
+  constructor(
+    private bookService: BookService,
+    private router: Router,
+    private wishlistService: WishlistService
+  ) {}
 
   ngOnInit() {
     this.books = this.bookService.getBooksFromLocalStorage();
@@ -42,6 +50,31 @@ export class HomeComponent implements OnInit {
       },
       (error) => console.log(error)
     );
+  }
+
+  checkBookInWishList(bookId: string): boolean {
+    return this.wishlistService.isBookInWishList(bookId);
+  }
+
+  toggleWishList(book: Book): void {
+    this.selectedBook = book;
+    this.modalTitle = this.checkBookInWishList(book.book_olid)
+      ? ` Are you sure you want to remove <strong>${book?.title}</strong> from your wish list ? `
+      : ` Are you sure you want to add <strong>${book.title}</strong> to your wish list ?`;
+    this.showConfirmModal = true;
+  }
+
+  onConfirm(confirm: boolean) {
+    if (confirm) {
+      if (this.selectedBook) {
+        if (this.checkBookInWishList(this.selectedBook.book_olid)) {
+          this.wishlistService.removeFromWishList(this.selectedBook.book_olid);
+        } else {
+          this.wishlistService.addToWishList(this.selectedBook);
+        }
+      }
+    }
+    this.showConfirmModal = false;
   }
 
   goToBookDetail(id: string) {

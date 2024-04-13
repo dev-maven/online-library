@@ -8,8 +8,19 @@
     <div class="author link"  (click)="navigateToAuthorDetail()">{{book.author}}</div>
   </div>
   </div>
-      <div class="actions">
+      <div class="actions" *ngIf="!wishlistScreen else  wishlistActions">
       <button class="action-button" (click)="navigateToBookDetail()">More</button>
-      <button class="action-button wishlist-button">Wishlist</button>
+      <button class="action-button wishlist-button"
+      [ngClass]="{'warn-button': isInWishlist, 'primary-button'
+      : !isInWishlist}"
+      (click)="toggleWishlist()">{{isInWishlist ? 'Remove from WishList'
+      : 'Add to WishList'}}</button>
     </div>
+
+    <ng-template #wishlistActions>
+      <div class="actions wishlist-action">
+      <button class="action-button wishlist-button warn-button" (click)="removeFromWishlist()">Remove from Wishlist</button>
+      </div>
+    </ng-template>
+
 </div>

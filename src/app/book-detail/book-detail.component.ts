@@ -37,10 +37,11 @@ export class BookDetailComponent implements OnInit, OnDestroy {
         );
         this.wishListSubscription = this.wishListService
           .getWishList()
-          .subscribe((wishList) => {
-            this.isBookInWishList = wishList.some(
-              (book) => book.book_olid === this.book?.book_olid
-            );
+          .subscribe(() => {
+            if (this.book)
+              this.isBookInWishList = this.wishListService.isBookInWishList(
+                this.book.book_olid
+              );
           });
       }
     }

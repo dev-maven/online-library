@@ -112,11 +112,11 @@ body {
 }
 
 .warn-button {
-  background: $warn-color;
-  border: none;
+  background: $warn-color !important;
+  border: 1px solid $warn-color !important;
 }
 
 .primary-button {
   background: $primary-color;
-  border: none;
+  border: 1px solid $primary-color;
 }

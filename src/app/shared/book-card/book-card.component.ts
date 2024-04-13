@@ -8,8 +8,12 @@ import { Book } from '../../models/book';
 })
 export class BookCardComponent implements OnInit {
   @Input() book: Book | null = null;
+  @Input() wishlistScreen = false;
+  @Input() isInWishlist = false;
   @Output() openBookDetail = new EventEmitter();
   @Output() openAuthorDetail = new EventEmitter();
+  @Output() wishlistRemove = new EventEmitter();
+  @Output() wishlistToggle = new EventEmitter();
   constructor() {}
 
   ngOnInit() {}
@@ -20,5 +24,13 @@ export class BookCardComponent implements OnInit {
 
   navigateToAuthorDetail() {
     this.openAuthorDetail.emit(this.book);
+  }
+
+  toggleWishlist() {
+    this.wishlistToggle.emit(this.book);
+  }
+
+  removeFromWishlist() {
+    this.wishlistRemove.emit(this.book);
   }
 }
