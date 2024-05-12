@@ -22,7 +22,7 @@ export class HomeComponent implements OnInit {
 
   ngOnInit() {
     this.books = this.bookService.getBooksFromLocalStorage();
-    if (this.books.length === 0) {
+    if (!this.books || this.books?.length === 0) {
       this.loadSubject();
     }
   }
